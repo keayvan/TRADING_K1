@@ -16,7 +16,7 @@ from matplotlib.lines import Line2D
 print("Fetching data from Yahoo Finance...")
 
 ticker = "BTC-USD"
-df = yf.download(ticker, period="90d", interval="1d", auto_adjust=True)
+df = yf.download(ticker, period="2y", interval="1d", auto_adjust=True)
 df = df[['Close']].copy()
 df.columns = ['close']
 df.dropna(inplace=True)
@@ -28,8 +28,8 @@ print("-" * 40)
 # ─────────────────────────────────────────
 #  2. Calculate indicators
 # ─────────────────────────────────────────
-MA_SHORT = 5   # short-term moving average period
-MA_LONG  = 25   # long-term moving average period
+MA_SHORT = 20   # short-term moving average period
+MA_LONG  = 50   # long-term moving average period
 
 df['MA_short'] = df['close'].rolling(window=MA_SHORT).mean()
 df['MA_long']  = df['close'].rolling(window=MA_LONG).mean()
